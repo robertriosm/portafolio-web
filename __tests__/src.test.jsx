@@ -2,99 +2,86 @@ import React from 'react'
 import '@testing-library/jest-dom'
 import { fireEvent, render, screen } from '@testing-library/react'
 import App from '../src/components/App'
+import Presentation from '../src/components/Presentation'
+import ContactMe from '../src/components/ContactMe'
+import Header from '../src/components/Header'
+// import Projects from '../src/components/Projects'
 
-describe('tests para la calculadora', () => {
-  // test para la suma
-  it('introducir la operacion 10 + 10 =, depliga 20 en h3#result', () => {
-    render(<App name="Roberto" />)
-    fireEvent.click(document.getElementById('1'))
-    fireEvent.click(document.getElementById('0'))
-    fireEvent.click(document.getElementById('+'))
-    fireEvent.click(document.getElementById('1'))
-    fireEvent.click(document.getElementById('0'))
-    fireEvent.click(document.getElementById('='))
-    expect(screen.getByTestId('result')).toHaveTextContent('20')
+describe('tests para el portafolio web', () => {
+  // test para el componente de presentacion
+  it('deberia de aparecer correctamente el componente principal y un welcome', () => {
+    render(<Presentation />)
+    expect(screen.getByTestId('welcome-title')).toHaveTextContent('WELCOME')
   })
-  // test para la resta
-  it('introducir la operacion 10 - 10 =, depliga 0 en h3#result', () => {
-    render(<App name="Roberto" />)
-    fireEvent.click(document.getElementById('1'))
-    fireEvent.click(document.getElementById('0'))
-    fireEvent.click(document.getElementById('-'))
-    fireEvent.click(document.getElementById('1'))
-    fireEvent.click(document.getElementById('0'))
-    fireEvent.click(document.getElementById('='))
-    expect(screen.getByTestId('result')).toHaveTextContent('0')
+  // test para el formulario de contacto
+  it('deberian renderizarse correctamente las partes del formulario', () => {
+    render(<ContactMe />)
+    expect(screen.getByTestId('message')).toHaveAttribute('required')
+    expect(screen.getByTestId('name')).toHaveAttribute('required')
+    expect(screen.getByTestId('email')).toHaveAttribute('required')
   })
-  // test para la multiplicacion
-  it('introducir la operacion 10 x 10 =, depliga 100 en h3#result', () => {
-    render(<App name="Roberto" />)
-    fireEvent.click(document.getElementById('1'))
-    fireEvent.click(document.getElementById('0'))
-    fireEvent.click(document.getElementById('x'))
-    fireEvent.click(document.getElementById('1'))
-    fireEvent.click(document.getElementById('0'))
-    fireEvent.click(document.getElementById('='))
-    expect(screen.getByTestId('result')).toHaveTextContent('100')
+  // test para el header
+  it('deberia renderizarse correctamente los links del header', () => {
+    render(<Header />)
+    expect(screen.getByTestId('contact_me')).toHaveAttribute('href')
+    expect(screen.getByTestId('technologies')).toHaveAttribute('href')
+    expect(screen.getByTestId('projects')).toHaveAttribute('href')
   })
-  // test para la division
-  it('introducir la operacion 10 / 0 =, depliga un error en h3#result', () => {
-    render(<App name="Roberto" />)
-    fireEvent.click(document.getElementById('1'))
-    fireEvent.click(document.getElementById('0'))
-    fireEvent.click(document.getElementById('/'))
-    fireEvent.click(document.getElementById('0'))
-    fireEvent.click(document.getElementById('='))
-    expect(screen.getByTestId('result')).toHaveTextContent('error')
+  // test para una card de tecnologia
+  it('deberian renderizarse todas las cards al llamar a su parent component, se prueba la de npm', () => {
+    render(<App />) // se llama a app ya que app contiene los arrays con la data para crear las cards de forma dinamica
+    expect(screen.getByTestId('npm')).toBeTruthy()
   })
-  // test para cambiar signo
-  it('10 + 10 =, depliga 20 en h3#result, al clickear el boton +/-, depliga -20 en h3#result, al clickearlo de nuevo, depliga 20 en h3#result', () => {
-    render(<App name="Roberto" />)
-    fireEvent.click(document.getElementById('1'))
-    fireEvent.click(document.getElementById('0'))
-    fireEvent.click(document.getElementById('+'))
-    fireEvent.click(document.getElementById('1'))
-    fireEvent.click(document.getElementById('0'))
-    fireEvent.click(document.getElementById('='))
-    fireEvent.click(document.getElementById('+/-'))
-    expect(screen.getByTestId('result')).toHaveTextContent('-20')
-    fireEvent.click(document.getElementById('+/-'))
-    expect(screen.getByTestId('result')).toHaveTextContent('20')
+  // test para el estado de la alerta
+  it('deberia renderizarse el form, pero su alerta debe estar en false y no aparecer', () => {
+    render(<ContactMe />)
+    expect(screen.queryByText(/Mensaje enviado/i)).not.toBeInTheDocument()
   })
-  // test para modulos
-  it('introducir la operacion 10 % 1 =, depliga 0 en h3#result', () => {
-    render(<App name="Roberto" />)
-    fireEvent.click(document.getElementById('1'))
-    fireEvent.click(document.getElementById('0'))
-    fireEvent.click(document.getElementById('%'))
-    fireEvent.click(document.getElementById('1'))
-    fireEvent.click(document.getElementById('='))
-    expect(screen.getByTestId('result')).toHaveTextContent('0')
+  //
+  // test para los campos del formulario
+  it('deberia renderizarse el form, y si se da click en enviar, no se envia, debe llenarlo antes', () => {
+    render(<ContactMe />)
+    const required = screen.getByTestId('message')
+    fireEvent.click(document.getElementById('enviar'))
+    expect(required).toBeInvalid()
   })
-  // test para la igualdad
-  it('test para verificar igualdad ==', () => {
-    render(<App name="Roberto" />)
-    fireEvent.click(document.getElementById('0'))
-    fireEvent.click(document.getElementById('=='))
-    fireEvent.click(document.getElementById('0'))
-    fireEvent.click(document.getElementById('='))
-    expect(screen.getByTestId('result')).toHaveTextContent('true')
+  // test para el componente de proyectos
+  it('al renderizar el carousel, deberian estar los links asociados a los proyectos', () => {
+    render(<App />)
+    fireEvent.click(document.getElementById('http://35.169.93.164:1000/'))
+    expect(screen.getByTestId('http://35.169.93.164:1000/')).toHaveAttribute(
+      'href'
+    )
+    expect(screen.getByTestId('http://35.169.93.164:1000/')).toHaveAttribute(
+      'target'
+    )
   })
-  // test para la concatenacion
-  it('test del limite de la concatenacion (9 digitos)', () => {
-    render(<App name="Roberto" />)
-    fireEvent.click(document.getElementById('9'))
-    fireEvent.click(document.getElementById('9'))
-    fireEvent.click(document.getElementById('9'))
-    fireEvent.click(document.getElementById('9'))
-    fireEvent.click(document.getElementById('9'))
-    fireEvent.click(document.getElementById('x'))
-    fireEvent.click(document.getElementById('9'))
-    fireEvent.click(document.getElementById('9'))
-    fireEvent.click(document.getElementById('9'))
-    fireEvent.click(document.getElementById('9'))
-    fireEvent.click(document.getElementById('9'))
-    fireEvent.click(document.getElementById('='))
-    expect(screen.getByTestId('result')).toHaveTextContent('error')
+  // test para los iconos de redes
+  it('al renderizar el componente de presentacion, deberian estar los links asociados a las redes', () => {
+    render(<Presentation />)
+    fireEvent.click(document.getElementById('github'))
+    expect(screen.getByTestId('github')).toHaveAttribute('href')
+    fireEvent.click(document.getElementById('stackoverflow'))
+    expect(screen.getByTestId('stackoverflow')).toHaveAttribute('href')
+    fireEvent.click(document.getElementById('discord'))
+    expect(screen.getByTestId('discord')).toHaveAttribute('href')
+  })
+  // test para el carousel de los proyectos
+  it('al renderizar el carousel, deberian estar los links asociados a los proyectos', () => {
+    render(<App />)
+    fireEvent.click(document.getElementById('http://35.169.93.164:1000/'))
+    expect(screen.getByTestId('http://35.169.93.164:1000/')).toHaveAttribute(
+      'href'
+    )
+    expect(screen.getByTestId('http://35.169.93.164:1000/')).toHaveAttribute(
+      'target'
+    )
+  })
+  // test para ver si las imagenes tienen bien la ruta
+  it('al renderizar la app, deberia salir la imagen de la calculadora', () => {
+    render(<App />)
+    expect(
+      screen.getByTestId('Calculadora hecha en React + testing en Jest')
+    ).toHaveAttribute('src')
   })
 })

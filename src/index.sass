@@ -4,18 +4,50 @@ $blue2: #1663D7
 $bluePrincipal: #0066FF
 $lightBlue: #7AAFFA
 $myWhite: #F4F7F5
-$transparentBlue: #0f367102
+$transparentBlue: #0f36713e
+
+@font-face 
+    font-family: 'myRegularFont'
+    src: url('../public/fonts/AzoSans-Regular (1).ttf') format("truetype")
+
+@font-face 
+    font-family: 'myTitleFont'
+    src: url('../public/fonts/AzoSans-Black (1).ttf') format("truetype")
+
+@font-face 
+    font-family: 'myLightFont'
+    src: url('../public/fonts/AzoSans-Medium (1).ttf') format("truetype")
+
+
+$regular-font: 'myRegularFont', sans-serif
+$title-font: 'myTitleFont', sans-serif
+$light-font: 'myLightFont', sans-serif
+
+h2, h1
+    font-family: $title-font
+
+h3
+    font-family: $regular-font
+
+a
+    font-family: $light-font
 
 // NAVBAR
 
 .my-blur
     background: $transparentBlue
-    backdrop-filter: blur(10px) // This be the blur
+    backdrop-filter: blur(10px)
+    font-family: $regular-font
 
-.myBg
-    background: $myWhite
+// PRESENTATION
 
+.presentation
+    position: relative
+    width: 100%
 
-// TECHNOLOGIES
+.my-white
+    filter: invert(100%)
 
-.adjust-my-imgs
+.my-icons a
+    display: inline-block
+    margin: 0 10px 0 10px

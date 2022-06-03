@@ -1,27 +1,24 @@
 import React from 'react'
-import { Carousel } from 'react-bootstrap'
+import { Row, Container, CardGroup } from 'react-bootstrap'
 import PropTypes from 'prop-types'
+import TechCard from './TechCard'
 
 function Techs({ technologies }) {
   return (
-    <div className="technologies">
-      <h2>Technologies</h2>
-      <Carousel variant="dark">
-        {technologies.map((x) => (
-          <Carousel.Item>
-            <img
-              src={x.image}
-              alt="Ye"
-              height="400px"
-              className="mx-auto d-block"
-            />
-            <Carousel.Caption>
-              <h3>{x.title}</h3>
-              <p>{x.parag}</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        ))}
-      </Carousel>
+    <div id="technologies">
+      <br />
+      <br />
+      <br />
+      <h2>TECHNOLOGIES</h2>
+      <Container>
+        <Row md={3} className="g-3">
+          {technologies.map((x) => (
+            <CardGroup>
+              <TechCard image={x.image} title={x.title} parag={x.parag} />
+            </CardGroup>
+          ))}
+        </Row>
+      </Container>
     </div>
   )
 }

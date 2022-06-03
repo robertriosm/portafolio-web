@@ -11,6 +11,14 @@ import reactpng from '../../public/images/react.png'
 import sasspng from '../../public/images/sass.png'
 import webpackpng from '../../public/images/webpack.png'
 import storybookpng from '../../public/images/storybook.png'
+import Projects from './Projects'
+import reactEslintImg from '../../public/images/proyecto react eslint.jpg'
+import epic from '../../public/images/epic.jpg'
+import chat from '../../public/images/chat.jpg'
+import calculadora from '../../public/images/calc.jpg'
+import npmpng from '../../public/images/npm.png'
+import Presentation from './Presentation'
+import ContactMe from './ContactMe'
 
 const tecs = [
   {
@@ -23,19 +31,31 @@ const tecs = [
     image: webpackpng,
     title: 'Webpack',
     parag:
-      'Compactar y empaquetar los archivos de JS para optimizar el trabajo.',
+      'Loaders y plugins listos para compactar y empaquetar los archivos de JS y optimizar el trabajo.',
   },
   {
-    image: sasspng,
-    title: 'Sass',
+    image: nginxpng,
+    title: 'Nginx',
     parag:
-      'Se escoge la mejor y mas moderna sintaxis y se le dice adios al CSS clasico.',
+      'Una instancia en AWS con Nginx se encuentra lista para publicar increibles paginas web.',
+  },
+  {
+    image: npmpng,
+    title: 'npm',
+    parag:
+      'Los paquetes para los proyectos de Node estan siendo gestionados de la mejor forma con npm.',
   },
   {
     image: storybookpng,
     title: 'Storybook',
     parag:
       'Hacer testing visual de los componentes es posible incluso si no se han terminado otras partes.',
+  },
+  {
+    image: sasspng,
+    title: 'Sass',
+    parag:
+      'Se escoge la mejor y mas moderna sintaxis y se le dice adios al CSS clasico.',
   },
   {
     image: babelpng,
@@ -58,20 +78,40 @@ const tecs = [
     title: 'FireBase',
     parag: 'El backend esta asegurado, optimizado y listo para trabajar.',
   },
+]
+
+const projs = [
   {
-    image: nginxpng,
-    title: 'Nginx',
-    parag:
-      'Una instancia en AWS con Nginx se encuentra lista para publicar paginas web.',
+    image: calculadora,
+    title: 'Calculadora hecha en React + testing en Jest',
+    link: 'http://35.169.93.164:1010/',
+  },
+  {
+    image: reactEslintImg,
+    title: 'Laboratorio: React + Linting con Eslint',
+    link: 'http://35.169.93.164:800/',
+  },
+  {
+    image: epic,
+    title: 'Proyecto: Replicar la pagina de Epic Games',
+    link: 'http://35.169.93.164:1000/',
+  },
+  {
+    image: chat,
+    title: 'Laboratorio: Chat hecho en vanilla JS',
+    link: 'http://35.169.93.164:520/',
   },
 ]
 
 function App() {
   return (
     <div className="myBg">
+      <Header />
+      <Presentation />
       <Container>
-        <Header />
+        <ContactMe />
         <Techs technologies={tecs} />
+        <Projects projects={projs} />
       </Container>
     </div>
   )
