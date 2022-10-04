@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './Header'
 import Techs from './Techs'
 import babelpng from '../../public/images/babel.png'
@@ -105,15 +106,54 @@ const projs = [
 
 function App() {
   return (
-    <div className="myBg">
-      <Header />
-      <Presentation />
-      <Container>
-        <ContactMe />
-        <Techs technologies={tecs} />
-        <Projects projects={projs} />
-      </Container>
-    </div>
+    <Router>
+      <Routes>
+        <Route
+          path="/get_in_contact"
+          element={
+            <>
+              <Header />
+              <Container>
+                <ContactMe />
+              </Container>
+            </>
+          }
+        />
+        <Route
+          path="/services"
+          element={
+            <>
+              <Header />
+              <Container>
+                <Techs technologies={tecs} />
+              </Container>
+            </>
+          }
+        />
+        <Route
+          path="/my_work"
+          element={
+            <>
+              <Header />
+              <Container>
+                <Projects projects={projs} />
+              </Container>
+            </>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <>
+              <Header />
+              <Container>
+                <Presentation />
+              </Container>
+            </>
+          }
+        />
+      </Routes>
+    </Router>
   )
 }
 

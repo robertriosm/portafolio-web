@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Navbar, Nav, Container } from 'react-bootstrap'
 
 function Header() {
@@ -10,19 +11,21 @@ function Header() {
       expand="lg"
     >
       <Container>
-        <Navbar.Brand href="#home">RR</Navbar.Brand>
+        <Link to="/">
+          <Navbar.Brand>RR</Navbar.Brand>
+        </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link href="#contact_me" data-testid="contact_me">
-              Contact me
-            </Nav.Link>
-            <Nav.Link href="#technologies" data-testid="technologies">
-              Technologies
-            </Nav.Link>
-            <Nav.Link href="#projects" data-testid="projects">
-              Projects
-            </Nav.Link>
+            <Link to="/get_in_contact">
+              <Nav data-testid="contact_me">Contact me</Nav>
+            </Link>
+            <Link to="/services">
+              <Nav data-testid="technologies">Services</Nav>
+            </Link>
+            <Link to="/my_work">
+              <Nav.Link data-testid="projects">Projects</Nav.Link>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
