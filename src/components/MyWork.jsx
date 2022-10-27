@@ -2,7 +2,7 @@ import React from 'react'
 import { Carousel, Container } from 'react-bootstrap'
 import PropTypes from 'prop-types'
 
-function Projects({ projects }) {
+function MyWork({ projects }) {
   return (
     <div id="projects">
       <br />
@@ -43,7 +43,7 @@ function Projects({ projects }) {
   )
 }
 
-Projects.propTypes = {
+MyWork.propTypes = {
   projects: PropTypes.arrayOf(
     PropTypes.shape({
       image: PropTypes.string.isRequired,
@@ -53,4 +53,4 @@ Projects.propTypes = {
   ).isRequired,
 }
 
-export default Projects
+export default MyWork

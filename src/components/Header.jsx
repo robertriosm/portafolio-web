@@ -24,7 +24,7 @@ function Header() {
               <Nav data-testid="technologies">Services</Nav>
             </Link>
             <Link to="/my_work">
-              <Nav.Link data-testid="projects">Projects</Nav.Link>
+              <Nav.Link data-testid="projects">My Work</Nav.Link>
             </Link>
           </Nav>
         </Navbar.Collapse>
