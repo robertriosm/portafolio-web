@@ -12,7 +12,7 @@ import reactpng from '../../public/images/react.png'
 import sasspng from '../../public/images/sass.png'
 import webpackpng from '../../public/images/webpack.png'
 import storybookpng from '../../public/images/storybook.png'
-import Projects from './MyWork'
+import MyWork from './MyWork'
 import reactEslintImg from '../../public/images/proyecto react eslint.jpg'
 import epic from '../../public/images/epic.jpg'
 import chat from '../../public/images/chat.jpg'
@@ -131,12 +131,12 @@ function App() {
           }
         />
         <Route
-          path="/my_work"
+          path="/works"
           element={
             <>
               <Header />
               <Container>
-                <Projects projects={projs} />
+                <MyWork projects={projs} />
               </Container>
             </>
           }
