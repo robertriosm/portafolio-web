@@ -1,7 +1,9 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import App from './components/App'
 import './index.sass'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-ReactDOM.render(<App name="ROBERTO RIOS" />, document.getElementById('app'))
+const container = document.getElementById('app')
+const root = createRoot(container)
+root.render(<App name="ROBERTO RIOS" />)

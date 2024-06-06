@@ -1,9 +1,11 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
-import bg from '../../public/images/mybg.jpg'
+// import bg from '../../public/images/mybg.jpg'
+import bg from '../../public/images/bg2.png'
 import discord from '../../public/images/discord-v2.svg'
 import stackoverflow from '../../public/images/stack-overflow.svg'
 import github from '../../public/images/github.png'
+import linkedin from '../../public/images/linkedin.svg'
 
 function Presentation() {
   return (
@@ -20,6 +22,15 @@ function Presentation() {
         </Card.Title>
         <Card.Text className="text-center">
           <div className="my-icons">
+            <a
+              href="https://www.linkedin.com/in/roberto-rios-morales-a94843252/"
+              target="_blank"
+              rel="noreferrer"
+              id="linkedin"
+              data-testid="linkedin"
+            >
+              <img src={linkedin} alt="linkedin" height="40px" />
+            </a>
             <a
               href="https://github.com/robertriosm"
               target="_blank"
